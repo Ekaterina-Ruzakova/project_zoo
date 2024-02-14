@@ -2,30 +2,30 @@ const React = require('react');
 
 module.exports = function Header({ login }) {
   return (
-    <nav className="nav">
+    <div className="header_container">
       {login ? (
         <>
 
-          <a className="nav-link" href="/">
+          <a className="btn_link" href="/">
             <div className="home_page">ZOO</div>
           </a>
-          <a className="nav-link" href="/">Животные</a>
-          <a className="nav-link" href="/">Тарифы</a>
-          <a className="nav-link" href="/">Выйти</a>
+          <a className="btn_link" href="/">Животные</a>
+          <a className="btn_link" href="/">Тарифы</a>
+          <a className="btn_link" href="/logout">Выйти</a>
         </>
       ) : (
         <>
 
-          <a className="nav-link" href="/">
+          <a className="btn_link" href="/">
             <div className="home_page">ZOO</div>
           </a>
-          <a className="nav-link" href="/events">Животные</a>
-          <a className="nav-link" href="/events/new">Тарифы</a>
-          <a className="nav-link" href="/lk">Администратор</a>
+          <a className="btn_link" href="/">Животные</a>
+          <a className="btn_link" href="/">Тарифы</a>
+          <a className="btn_link" href="/login">Администратор</a>
 
         </>
       ) }
 
-    </nav>
+    </div>
   );
 };
