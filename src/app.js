@@ -14,6 +14,7 @@ const { PORT } = process.env ?? 3000;
 const app = express();
 
 const indexRouter = require('./routes/indexRouter');
+const pricePageRouter = require('./routes/pricePageRouter')
 
 const sessionConfig = {
   name: 'Cookie',
@@ -35,6 +36,7 @@ app.use(session(sessionConfig));
 
 /// тут будут app.use
 app.use('/', indexRouter);
+app.use('/price', pricePageRouter)
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);

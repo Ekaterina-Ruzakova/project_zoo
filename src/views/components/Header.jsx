@@ -20,7 +20,7 @@ module.exports = function Header({ login }) {
             <div className="home_page">ZOO</div>
           </a>
           <a className="nav-link" href="/events">Животные</a>
-          <a className="nav-link" href="/events/new">Тарифы</a>
+          <a className="nav-link" href="/price">Тарифы</a>
           <a className="nav-link" href="/lk">Администратор</a>
 
         </>
