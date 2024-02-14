@@ -4,9 +4,11 @@ const Layout = require('./Layout');
 module.exports = function Animals({ login, animals }) {
   return (
     <Layout login={login}>
+      <script defer src="/js/animalsFetch.js" />
       <div className="containerAnimals">
         <h2>Зверята</h2>
-        <div className="animaals">
+        <div className="message" />
+        <div className="animals">
           {animals && animals.map((el) => (
             <div key={el.id} id={`animal${el.id}`} className="animalsDiv">
               <div id={`carouselExampleIndicators${el.id}`} className="carousel slide" data-bs-ride="carousel">
@@ -30,8 +32,8 @@ module.exports = function Animals({ login, animals }) {
               <h3 className="elDescription">{el.description}</h3>
               {login && (
                 <div className="buttonED">
-                  <button className="buttonDelete" id={el.id} type="submit">Удалить</button>
-                  <button className="editButton" id={el.id} type="submit">Изменить</button>
+                  <a href={`/upAnimal/${el.id}`}><button type="submit" className="btn btn-secondary" id={el.id}>Изменить</button></a>
+                  <button type="submit" className="btn btn-dark" id={el.id}>Удалить</button>
                 </div>
               )}
             </div>
@@ -39,7 +41,7 @@ module.exports = function Animals({ login, animals }) {
         </div>
         {login && (
           <div>
-            <a href={'/newAnimal'}><button className="buttonCreate" type="submit">Новый зверь</button></a>
+            <a href="/newAnimal"><button className="buttonCreate" type="submit">Новый зверь</button></a>
           </div>
         )}
       </div>

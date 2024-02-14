@@ -9,5 +9,21 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+        "linebreak-style": 0,
+        "no-plusplus": 0,
+        "no-nested-ternary": 0,
+        "no-console": 0,
+        "no-restricted-syntax": 0,
+        "quotes": 0,
+        "indent": 0,
+        "semi": 0,
+        "keyword-spacing": 0,
+        "no-trailing-spaces": 0,
+        "import/no-extraneous-dependencies": 0,
+        "strict": 0,
+        "react/function-component-definition": "off",
+        "react/prop-types": "off",
+        "import/prefer-default-export": "off",
+     "  jsx-a11y/label-has-associated-control": "off"
     }
 }

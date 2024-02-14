@@ -16,6 +16,7 @@ const app = express();
 const indexRouter = require('./routes/indexRouter');
 const animalsRoutes = require('./routes/animalsRoutes');
 const newAnimalRoutes = require('./routes/newAnimalRoutes');
+const updateAnimalRoutes = require('./routes/updateAnimalRoutes');
 
 const sessionConfig = {
   name: 'Cookie',
@@ -39,6 +40,7 @@ app.use(session(sessionConfig));
 app.use('/', indexRouter);
 app.use('/animals', animalsRoutes);
 app.use('/newAnimal', newAnimalRoutes);
+app.use('/upAnimal', updateAnimalRoutes);
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);
