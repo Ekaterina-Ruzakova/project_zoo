@@ -21,9 +21,7 @@ const updateAnimalRoutes = require('./routes/updateAnimalRoutes');
 const loginRouter = require('./routes/loginRouter');
 const logoutRouter = require('./routes/logoutRouter');
 
-const { decodeSession } = require('./lib/middlewares/middlewares');
-
-
+const { decodeSession, checkUser } = require('./lib/middlewares/middlewares');
 
 const sessionConfig = {
   name: 'Cookie',
@@ -45,19 +43,14 @@ app.use(session(sessionConfig));
 
 /// тут будут app.use
 
-
 app.use('/', decodeSession, indexRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 
 app.use('/price', pricePageRouter)
 app.use('/animals', animalsRoutes);
-app.use('/newAnimal', newAnimalRoutes);
-app.use('/upAnimal', updateAnimalRoutes);
-
-
-
-
+app.use('/newAnimal', checkUser, newAnimalRoutes);
+app.use('/upAnimal', checkUser, updateAnimalRoutes);
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);

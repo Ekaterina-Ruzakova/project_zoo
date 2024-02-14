@@ -8,7 +8,7 @@ function Login({ login }) {
       <script defer src="/js/loginFetch.js" />
       <div className="main_container main_container_overflow">
         <div className="main_login">
-          <h3>Авторизация</h3>
+          <h3 className="additional_title">Авторизация</h3>
           <form action="/login" method="POST" className="logForm" id="logForm">
             <input
               name="login"

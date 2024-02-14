@@ -28,6 +28,8 @@ function Layout(props) {
         <title>ZOO</title>
         <link rel="stylesheet" href="/style/home.css" />
         <link rel="stylesheet" href="/style/login.css" />
+        <link rel="stylesheet" href="/style/price.css" />
+        <link rel="stylesheet" href="/style/animal.css" />
       </head>
       <body>
         <Header login={login} />

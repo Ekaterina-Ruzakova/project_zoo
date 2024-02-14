@@ -5,23 +5,21 @@ const UpdateAnimal = require('../views/UpdateAnimal');
 const renderTemplate = require('../lib/renderTemplate');
 
 updateAnimalRoutes.get('/:id', async (req, res) => {
-  const { login } = req.session;
+  const login = req.user?.login;
   const { id } = req.params;
   try {
     const animal = await Animal.findByPk(id, { include: [Photo] });
-    renderTemplate(UpdateAnimal, { login: 'qw', animal }, res);
+    renderTemplate(UpdateAnimal, { login, animal }, res);
   } catch (error) {
-    console.log(error, 'ОШИБКА В ОТРИСОВКЕ  РУЧКЕ АПДЕЙТ')
+    console.log(error, 'Ошибка в создании страницы')
   }
 });
 
 updateAnimalRoutes.put('/:id', async (req, res) => {
-    const { login } = req.session;
     const { id } = req.params;
     const {
         image1, image2, image3, image4, title, description,
       } = req.body;
-      console.log('========>>>>', req.body)
     try {
         const queryAnimal = await Animal.findByPk(id);
         const queryPotos = await Photo.findAll({ where: { animal_id: id } });
@@ -50,9 +48,9 @@ updateAnimalRoutes.put('/:id', async (req, res) => {
                 }
             });
 
-            res.json({ msg: 'Изменения приняты' })
+            res.json({ msg: 'Данные обновлены' })
         }else {
-            res.json({ err: 'Не удалось обновить запись о животном' });
+            res.json({ err: 'Не удалось обновить данные' });
         }
     } catch (error) {
         console.log(error, 'ОШИБКА В РУЧКЕ UPDATE ЖИВОТНОГО');

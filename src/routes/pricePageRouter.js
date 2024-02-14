@@ -1,35 +1,34 @@
 const express = require("express");
+
 const pricePageRouter = express.Router();
 const renderTemplate = require("../lib/renderTemplate");
 const Prices = require("../views/Prices");
 const { Price } = require("../../db/models");
 const PriceCreate = require("../views/PriceCreate");
 const PriceEdit = require("../views/PriceEdit");
-const { where } = require("sequelize");
+const { checkUser } = require("../lib/middlewares/middlewares");
 
 pricePageRouter.get("/", async (req, res) => {
   try {
-    const { login } = req.session;
+    const login = req.user?.login;
     const prices = await Price.findAll();
-    console.log(prices);
-    const result = prices.map((price) => price.get({ plain: true }));
-    renderTemplate(Prices, { login: "fdsdfs", prices }, res);
+    const pricesPlained = prices.map((price) => price.get({ plain: true }));
+    renderTemplate(Prices, { login, prices: pricesPlained }, res);
   } catch (err) {
-    console.log(err, "Ошибкаааа");
+    console.log(err, "Ошибка");
   }
 });
 
-pricePageRouter.get("/:id/edit", async (req, res) => {
+pricePageRouter.get("/:id/edit", checkUser, async (req, res) => {
   try {
     const price = await Price.findOne({ where: { id: req.params.id } });
-    renderTemplate(PriceEdit, { price }, res);
+    renderTemplate(PriceEdit, { price, login: req.user?.login }, res);
   } catch (err) {
     console.log(err, "Ошибка при загрузке страницы создания");
   }
 });
 
-pricePageRouter.put("/:id", async (req, res) => {
-  console.log(req.body);
+pricePageRouter.put("/:id", checkUser, async (req, res) => {
   try {
     await Price.update(
       {
@@ -41,7 +40,7 @@ pricePageRouter.put("/:id", async (req, res) => {
         where: { id: req.params.id },
         returning: true,
         plain: true,
-      }
+      },
     );
     res.json({ msg: "Данные обновлены" });
   } catch (error) {
@@ -51,15 +50,15 @@ pricePageRouter.put("/:id", async (req, res) => {
 
 // pricePageRouter.put('/id',)
 
-pricePageRouter.get("/create", async (req, res) => {
+pricePageRouter.get("/create", checkUser, async (req, res) => {
   try {
-    renderTemplate(PriceCreate, {}, res);
+    renderTemplate(PriceCreate, { login: req.user?.login }, res);
   } catch (err) {
     console.log(err, "Ошибка при загрузке страницы создания");
   }
 });
 
-pricePageRouter.post("/create", async (req, res) => {
+pricePageRouter.post("/create", checkUser, async (req, res) => {
   try {
     await Price.create(
       {
@@ -70,22 +69,22 @@ pricePageRouter.post("/create", async (req, res) => {
       {
         returning: true,
         plain: true,
-      }
+      },
     );
-    res.json({ msg: "Карточка созданна " });
+    res.json({ msg: "Запись добавлена" });
   } catch (err) {
-    console.log(err, "Ошибка при создании новой карточки");
-    res.json({ err: "Ошибка при создании новой карточки" });
+    console.log(err, "Ошибка при создании записи");
+    res.json({ err: "Ошибка при создании записи" });
   }
 });
 
-pricePageRouter.delete("/:id", async (req, res) => {
+pricePageRouter.delete("/:id", checkUser, async (req, res) => {
   try {
     await Price.destroy({ where: { id: req.params.id } });
     res.json({ msg: "Запись удалена" });
   } catch (err) {
-    console.log(err, "Ошибка при удалении карточки");
-    res.json({ err: "Ошибка при удалении карточки" });
+    console.log(err, "Ошибка при удалении записи");
+    res.json({ err: "Ошибка при удалении записи" });
   }
 });
 module.exports = pricePageRouter;

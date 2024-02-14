@@ -2,13 +2,12 @@ const containerAnimals = document.querySelector('.animals');
 const message = document.querySelector('.message')
 
 containerAnimals.addEventListener('click', async (event) => {
-    if(event.target.classList.contains('btn-dark')) {
+    if(event.target.classList.contains('button_delete')) {
         event.preventDefault();
         try {
             const response = await fetch(`/animals/${event.target.id}`, {
                 method: 'DELETE',
             });
-
 
             const result = await response.json();
 

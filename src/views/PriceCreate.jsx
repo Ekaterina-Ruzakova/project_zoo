@@ -1,47 +1,44 @@
 const React = require("react");
-const Layout = require("../views/Layout");
+const Layout = require("./Layout");
 
-function PriceCreate(Login) {
+function PriceCreate({ login }) {
   return (
-    <Layout login={ Login }>
+    <Layout login={login}>
       <script defer src="/js/PriceFetch.js" />
-      <div className="createContainer">
-        <h1>Создание нового тарифа</h1>
-        <form action="/create" method="post" id="NewPriceForm">
-          <div className="form-group">
-            <label>Название тарифа</label>
+      <div className="main_container main_container_overflow">
+        <div className="main_login">
+          <h3 className="additional_title">Создание нового тарифа</h3>
+          <form action="/create" method="post" className="logForm priceForm" id="NewPriceForm">
             <input
               type="text"
               name="title_price"
-              className="form-control"
+              className="main_input"
               required
+              placeholder="Название"
             />
-          </div>
-          <div className="form-group">
-            <label>Цена для взрослых</label>
             <input
               type="number"
               name="all_price"
-              className="form-control"
+              className="main_input"
               required
+              placeholder="Цена для взрослых"
             />
-          </div>
-          <div className="form-group">
-            <label>Цена для детей</label>
             <input
               type="number"
               name="children_price"
-              className="form-control"
+              className="main_input"
               required
+              placeholder="Цена для детей"
             />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Создать тариф
-          </button>
-          <div className="errmsg"></div>
-          <a href="/price">Назад</a>
-        </form>
+            <button type="submit" className="main_button">
+              Создать
+            </button>
+            <div className="errmsg" />
+            <a className="back_link" href="/price">Назад</a>
+          </form>
+        </div>
       </div>
+      
     </Layout>
   );
 }

@@ -7,20 +7,20 @@ module.exports = function Header({ login }) {
         <>
 
           <a className="btn_link" href="/">
-            <div className="home_page">ZOO</div>
+            <div className="home_page">Главная</div>
           </a>
-          <a className="btn_link" href="/">Животные</a>
-          <a className="btn_link" href="/">Тарифы</a>
+          <a className="btn_link" href="/animals">Животные</a>
+          <a className="btn_link" href="/price">Тарифы</a>
           <a className="btn_link" href="/logout">Выйти</a>
         </>
       ) : (
         <>
           <a className="btn_link" href="/">
-            <div className="home_page">ZOO</div>
+            <div className="home_page">Главная</div>
           </a>
           <a className="btn_link" href="/animals">Животные</a>
           <a className="btn_link" href="/price">Тарифы</a>
-          <a className="btn_link" href="/login">Администратор</a>
+          <a className="btn_link" href="/login">Войти</a>
         </>
       ) }
 

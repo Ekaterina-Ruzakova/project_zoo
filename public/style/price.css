@@ -1,0 +1,72 @@
+.priceForm{
+  height: 300px !important;
+}
+.back_link{
+  border: none;
+  background:none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 20px;
+  text-decoration: none;
+  transition: 200ms;
+}
+.back_link:hover{
+  color: rgba(255, 255, 255, 1);
+}
+.card_price{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 100px;
+  width: 350px;
+  box-shadow: 0px 0px 14px 17px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  margin: 40px 20px;
+}
+.card_secondary_title, .card_title, .card_value{
+  color: white;
+}
+.card_secondary_title, .card_value{
+  font-size: 20px;
+}
+.card_value{
+  font-weight: 600;
+}
+.card_value_container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.CardEdit{
+position: absolute;
+right: 25px;
+top: 25px;
+}
+.card_title{
+  margin-bottom: 20px;
+}
+.PriceContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.additional_title_container{
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+}
+.cards_container{
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.card_price:hover .icon{
+  opacity: 0.3;
+}
+.icon:hover{
+  opacity: 0.7 !important;
+}

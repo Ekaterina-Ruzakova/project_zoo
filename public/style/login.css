@@ -21,7 +21,7 @@
   width: 100%;
   height: 150px;
 }
-.main_login h3{
+.additional_title{
   color: white;
   font-size: 64px;
 }
@@ -43,11 +43,9 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 .main_input{
-  border: solid 2px rgba(0, 0, 0, 0);;
+  border: solid 2px rgba(0, 0, 0, 0);
   border-bottom: solid 2px rgba(0, 0, 0, 0.3);
-  /* border-radius: 25px; */
   background-color: rgba(0, 0, 0, 0);
-  /* padding: 0 10px; */
   transition: 300ms;
   color: white;
   font-size: 24px;
