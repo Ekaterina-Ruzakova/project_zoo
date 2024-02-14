@@ -1,12 +1,12 @@
-// const express = require('express');
+const express = require('express');
 
-// const logoutRouter = express.Router();
+const logoutRouter = express.Router();
 
-// logoutRouter.get('/', (req, res) => {
-//   req.session.destroy(() => {
-//     res.clearCookie('cookieName');
-//     res.redirect('/');
-//   });
-// });
+logoutRouter.get('/', (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie('cookieName');
+    res.redirect('/');
+  });
+});
 
-// module.exports = logoutRouter;
+module.exports = logoutRouter;

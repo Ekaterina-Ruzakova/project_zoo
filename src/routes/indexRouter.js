@@ -6,7 +6,7 @@ const renderTemplate = require('../lib/renderTemplate');
 const Home = require('../views/Home');
 
 indexRouter.get('/', async (req, res) => {
-  renderTemplate(Home, { login: req.session.login }, res);
+  renderTemplate(Home, { login: req?.user?.login }, res);
 });
 
 module.exports = indexRouter;

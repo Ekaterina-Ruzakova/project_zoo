@@ -1,1 +1,82 @@
-// 
+.main_container_overflow {
+  overflow: hidden;
+}
+.main_login{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center ;
+  padding-top: 50px;
+  transform: translateY(10%);
+  opacity: 0;
+  animation: slide_auth 1s ease-in-out forwards;
+}
+.logForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center ;
+  width: 100%;
+  height: 150px;
+}
+.main_login h3{
+  color: white;
+  font-size: 64px;
+}
+.main_button{
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  transition: 200ms;
+  padding: 3px 9px;
+}
+.main_button:hover{
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.main_button:active{
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.main_input{
+  border: solid 2px rgba(0, 0, 0, 0);;
+  border-bottom: solid 2px rgba(0, 0, 0, 0.3);
+  /* border-radius: 25px; */
+  background-color: rgba(0, 0, 0, 0);
+  /* padding: 0 10px; */
+  transition: 300ms;
+  color: white;
+  font-size: 24px;
+}
+.main_input:focus, .main_input:not(.main_input:placeholder-shown){
+  outline: none;
+   border-radius: 25px; 
+     padding-left: 10px; 
+     padding-right: 10px;
+    border: solid 2px rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: none !important;
+}
+.main_input::-webkit-input-placeholder{
+ color: rgba(255, 255, 255, 0.5);
+}
+.logMsg{
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@keyframes slide_auth {
+	0% {
+		opacity: 0;
+    transform: translateY(10%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
