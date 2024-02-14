@@ -29,8 +29,8 @@ module.exports = function UpdateAnimal({ login, animal }) {
           <textarea className="form-controlD" id="exampleFormControlTextarea2" rows="3" name="description" required defaultValue={animal.description} />
         </div>
         <div className="button">
-          <button type="submit" className="btn btn-success">Добавить</button>
-          <button type="submit" className="btn btn-danger">Назад</button>
+          <button type="submit" className="btn btn-success" id={animal.id}>Добавить</button>
+          <button type="submit" className="btn btn-danger" id={animal.id}>Назад</button>
         </div>
       </form>
     </Layout>

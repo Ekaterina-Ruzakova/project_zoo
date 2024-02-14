@@ -21,11 +21,12 @@ updateAnimalRoutes.put('/:id', async (req, res) => {
     const {
         image1, image2, image3, image4, title, description,
       } = req.body;
+      console.log('========>>>>', req.body)
     try {
         const queryAnimal = await Animal.findByPk(id);
         const queryPotos = await Photo.findAll({ where: { animal_id: id } });
-        console.log('========>>>>', queryAnimal)
-        if(queryAnimal || queryPoto) {
+        
+        if(queryAnimal || queryPotos) {
             queryAnimal.title = title;
             queryAnimal.description = description;
             await queryAnimal.save();
