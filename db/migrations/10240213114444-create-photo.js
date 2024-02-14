@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       image: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       animal_id: {
         type: Sequelize.INTEGER,
@@ -19,6 +19,8 @@ module.exports = {
           },
           key: 'id',
         },
+            onDelete: 'cascade',
+            allowNull: false,
       },
       createdAt: {
         allowNull: false,
