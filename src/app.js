@@ -3,9 +3,10 @@ require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser') // чтобы на беке были в правильном виде
 
-const session = require('express-session');
-const FileStore = require('session-file-store')(session);
+// const session = require('express-session');
+// const FileStore = require('session-file-store')(session);
 
 const path = require('path');
 
@@ -23,23 +24,24 @@ const logoutRouter = require('./routes/logoutRouter');
 
 const { decodeSession, checkUser } = require('./lib/middlewares/middlewares');
 
-const sessionConfig = {
-  name: 'Cookie',
-  store: new FileStore(),
-  secret: process.env.SESSION_SECRET ?? 'Session',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 9999999,
-    httpOnly: true,
-  },
-};
+// const sessionConfig = {
+//   name: 'Cookie',
+//   store: new FileStore(),
+//   secret: process.env.SESSION_SECRET ?? 'Session',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     maxAge: 9999999,
+//     httpOnly: true,
+//   },
+// };
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(process.cwd(), 'public')));
-app.use(session(sessionConfig));
+app.use(cookieParser())
+// app.use(session(sessionConfig));
 
 /// тут будут app.use
 

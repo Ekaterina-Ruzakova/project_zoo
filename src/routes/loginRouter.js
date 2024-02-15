@@ -12,7 +12,7 @@ const Login = require('../views/Login');
 function generateToken(id, login) {
   return JWT.sign({
     id, login,
-  }, process.env.JWT_SECRET, { expiresIn: '24h' });
+  }, process.env.JWT_SECRET, { expiresIn: '24h' }); // возвращает зашифрованную строку(токен)
 }
 
 loginRouter.get('/', async (req, res) => {
@@ -26,22 +26,25 @@ loginRouter.post('/', async (req, res) => {
     if (!users || !users.length) {
       const hashPassword = await bcrypt.hash(password, 5);
       const user = await User.create({ login, password: hashPassword });
+      
+      // req.session.login = user.login;
+      // req.session.save(() => {
+      //   res.json({ msg: 'Вы успешно зарегистрировались' });
+      // });
       const token = generateToken(user.id, user.login);
-      req.session.user = { token };
-      req.session.save(() => {
-        res.json({ msg: 'Вы успешно зарегистрировались' });
-      });
+      res.cookie('auth', token, { maxAge: 900000, httpOnly: true }).json({ msg: 'Вы успешно авторизовались' })
     }
 
     const user = await User.findOne({ where: { login } });
     if (user) {
       const checkPass = await bcrypt.compare(password, user.password);
       if (checkPass) {
+        // req.session.user = { token };
+        // req.session.save(() => {
+        //   res.json({ msg: 'Вы успешно авторизованы!' });
+        // });
         const token = generateToken(user.id, user.login);
-        req.session.user = { token };
-        req.session.save(() => {
-          res.json({ msg: 'Вы успешно авторизованы!' });
-        });
+        res.cookie('auth', token, { maxAge: 900000, httpOnly: true }).json({ msg: 'Вы успешно зарегистрировались' })
       } else {
         res.json({ err: 'Введен неверный пароль!' });
       }

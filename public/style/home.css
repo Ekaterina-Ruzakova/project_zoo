@@ -29,7 +29,7 @@ input[type="number"]:focus {
   cursor: pointer;
 }
 .main{
-  background-image: url('../img/lions.gif');
+  background-image: url('/img/lions.gif');
   width: 100%;
   background-size: cover;
   height: 100%;
